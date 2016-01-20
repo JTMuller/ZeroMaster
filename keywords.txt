@@ -12,6 +12,7 @@ ZeroLED      			KEYWORD1
 ZeroAMP      			KEYWORD1
 ZeroPWM      			KEYWORD1
 ZeroHeat			KEYWORD1
+ZeroFila			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -27,3 +28,4 @@ HeatFast			KEYWORD2
 HeatFastReverse			KEYWORD2
 HeatRegulate			KEYWORD2
 HeatReverse			KEYWORD2
+FilaRead			KEYWORD2
