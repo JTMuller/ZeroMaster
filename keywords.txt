@@ -1,0 +1,23 @@
+#######################################
+# Coloring Map For DigiPWM Library
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+ZeroMaster			KEYWORD1
+
+ZeroLED      			KEYWORD1
+ZeroAMP      			KEYWORD1
+ZeroPWM      			KEYWORD1
+ZeroHeat			KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+Shine   			KEYWORD2
+EXA	   			KEYWORD2
+pwmWrite   			KEYWORD2
+Heat				KEYWORD2
