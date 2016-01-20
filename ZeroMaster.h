@@ -1,7 +1,7 @@
 /*
  * ZeroMaster.h - Library for using several devices for the 3Devo NEXT 1.0
  * Created by Julian Muller, November 30, 2015
- * Last updated on December 18, 2015
+ * Last updated on December 28, 2015
  */
 
 #ifndef ZEROMASTER_H
@@ -325,6 +325,7 @@ int LightMax;
 int LightMin;
 double Filamentwidth;
 double SensorStep;
+double FSA[20];
 
 public:
 ZeroFila(int SI, int CLK, int AO1, int LED)
@@ -344,7 +345,7 @@ ZeroFila(int SI, int CLK, int AO1, int LED)
   digitalWrite(pinCLK, LOW); digitalWrite(pinSI, LOW);
   }
 
-  double FilaRead() 
+  double FS() 
   {
   digitalWrite(pinSI, HIGH);  digitalWrite(pinCLK, HIGH);   
   digitalWrite(pinCLK, LOW);  digitalWrite(pinSI, LOW);
@@ -369,6 +370,32 @@ ZeroFila(int SI, int CLK, int AO1, int LED)
   iR=120; while ( (iR>=20 ) && (IntArray[iR]>ttLevel) ) { iR--; }
   Filamentwidth = 0.0;
   if ( iL<iR ) { Filamentwidth =  double( iR-iL ) * SensorStep / 1000.0 ; }  
+  }
+
+  double FilaRead()
+  {
+  FSA[0] = FS();
+  FSA[1] = FS();
+  FSA[2] = FS();
+  FSA[3] = FS();
+  FSA[4] = FS();
+  FSA[5] = FS();
+  FSA[6] = FS();
+  FSA[7] = FS();
+  FSA[8] = FS();
+  FSA[9] = FS();
+  FSA[10] = FS();
+  FSA[11] = FS();
+  FSA[12] = FS();
+  FSA[13] = FS();
+  FSA[14] = FS();
+  FSA[15] = FS();
+  FSA[16] = FS();
+  FSA[17] = FS();
+  FSA[18] = FS();
+  FSA[19] = FS();
+  double FSR = (FSA[0]+FSA[1]+FSA[2]+FSA[3]+FSA[4]+FSA[5]+FSA[6]+FSA[7]+FSA[8]+FSA[9]+FSA[10]+FSA[11]+FSA[12]+FSA[13]+FSA[14]+FSA[15]+FSA[16]+FSA[17]+FSA[18]+FSA[19]) / 20;
+  return FSR;
   }
 };
 

@@ -1,0 +1,25 @@
+Version 7:
+Fixed ZeroFila so that it still functions when delayed, and measures a more stable value.
+
+Version 6:
+Added the new ZeroFila part, a function to easily control a TSL1401CL as a filament sensor.
+
+Version 5:
+Added the DigiShine function for ZeroLED, combining both ZeroLED and ZeroPWM.
+
+Version 4:
+Fixed ZeroHeats 0 and 100% values to be 0 and 100%.
+
+Version 3:
+Complete overhaul of the functions of ZeroHeat. Regulate function got skimmed down.
+Heat and HeatSlow got replaced with Heat, HeatReverse, HeatFast and HeatFastReverse.
+
+Version 2:
+Complete overhaul of ZeroAMP.
+Added the HeatSlow function in ZeroHeat.
+
+Version 1:
+Added ZeroHeat as a heater specific version of ZeroPWM.
+
+Version 0:
+Combined the ZeroLED, ZeroAMP and ZeroPWM Libraries.
