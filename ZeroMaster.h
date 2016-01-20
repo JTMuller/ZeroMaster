@@ -13,6 +13,10 @@
  #include "WProgram.h"
 #endif
 
+/*
+ * ZeroLED is the class made for RBG LED Strips.
+ * This class and function simply compiles all 3 colors in one element for an easier code.
+ */
 
 class ZeroLED
 {
@@ -38,6 +42,12 @@ class ZeroLED
  analogWrite(Bpin, B);  
  }
 };
+
+
+/*
+ * ZeroAMP is used for ACS712 Ampere meters.
+ * This class and function read the amps and stabilise a part of the static.
+ */
 
 class ZeroAMP
 {
@@ -85,6 +95,12 @@ class ZeroAMP
   } 
 };
 
+
+/*
+ * ZeroPWM is used for any digital pin that should function as PWM.
+ * This class and function simulate a PWM wave. The cycletime is set as 2000 Microseconds. 
+ */
+
 class ZeroPWM
 {
   int pwmpin;
@@ -123,6 +139,11 @@ class ZeroPWM
   }
   }
 };
+
+/*
+ * ZeroHeat is a variation of ZeroPWM used for solid state relays.
+ * This class and function allows the user to set the cycletime themselves and allows them to use either millis or micro's
+ */
 
 class ZeroHeat
 {
@@ -182,5 +203,47 @@ class ZeroHeat
   }
   }
 };
+
+/*
+ * ZeroRegulate is there to regulate heaters. It works together with ZeroHeat.
+ * This function converts the input Set and Scanned temperature values into a heat% to be used by ZeroHeat.
+ */
+
+double ZeroRegulate(double Temp1Set, double Temp1Scan)
+{
+#ifndef Temp1Peak
+byte Temp1Peak = 0;
+#endif
+int Temp1;
+
+if (Temp1Peak == 0)
+{ 
+  if (Temp1Scan < (Temp1Set - 40))
+  {Temp1 = 100;}
+  else if (Temp1Scan < (Temp1Set - 25))
+  {Temp1 = 75;}
+  else if (Temp1Scan < (Temp1Set - 10))
+  {Temp1 = 50;}
+  else if (Temp1Scan <=(Temp1Set - 1))
+  {Temp1 = 25;}
+  else if (Temp1Scan > (Temp1Set - 1))
+  {Temp1Peak = 1;}
+}
+else if (Temp1Peak == 1)
+{
+  if (Temp1Scan > (Temp1Set + 1))
+  {Temp1 = 0;}
+  else if (Temp1Scan < (Temp1Set - 3))
+  {Temp1 = 100;}
+  else if (Temp1Scan < (Temp1Set - 2))
+  {Temp1 = 75;}
+  else if (Temp1Scan < (Temp1Set - 1))
+  {Temp1 = 50;}
+  else if (Temp1Scan > (Temp1Set - 1) && Temp1Scan < (Temp1Set + 1))
+  {Temp1 = 25;}
+}
+
+return Temp1;
+}
 
 #endif

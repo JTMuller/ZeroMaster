@@ -12,6 +12,7 @@ ZeroLED      			KEYWORD1
 ZeroAMP      			KEYWORD1
 ZeroPWM      			KEYWORD1
 ZeroHeat			KEYWORD1
+ZeroRegulate			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
