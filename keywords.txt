@@ -12,7 +12,6 @@ ZeroLED      			KEYWORD1
 ZeroAMP      			KEYWORD1
 ZeroPWM      			KEYWORD1
 ZeroHeat			KEYWORD1
-ZeroRegulate			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -22,4 +21,8 @@ Shine   			KEYWORD2
 EXA	   			KEYWORD2
 pwmWrite   			KEYWORD2
 Heat				KEYWORD2
-HeatSlow			KEYWORD2
+HeatReverse			KEYWORD2
+HeatFast			KEYWORD2
+HeatFastReverse			KEYWORD2
+HeatRegulate			KEYWORD2
+HeatReverse			KEYWORD2

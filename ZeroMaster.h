@@ -163,7 +163,7 @@ class ZeroHeat
   c = cycle;
   }
  
-  void Heat(int x)
+  void HeatFast(int x)
   {
   x2 = x*(c / 100);
   if (x2 > c) {digitalWrite(heatpin, HIGH);}
@@ -180,10 +180,28 @@ class ZeroHeat
   HeatOldTime = HeatTime; 
   digitalWrite(heatpin, LOW);
   Value = 0;}    
-  }
-  }
+  }  }
 
-  void HeatSlow(int x)
+  void HeatFastReverse(int x)
+  {
+  x2 = x*(c / 100);
+  if (x2 > c) {digitalWrite(heatpin, LOW);}
+  else if (x2 < 0) {digitalWrite(heatpin, HIGH);}
+  else {  
+  unsigned long HeatTime = micros();
+  
+  if(HeatTime - HeatOldTime >= (c-x2) && Value == 0) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, LOW);
+  Value = 1;}
+
+  if(HeatTime - HeatOldTime >= x2 && Value == 1) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, HIGH);
+  Value = 0;}    
+  }  }
+
+  void Heat(int x)
   {
   x2 = x*(c / 100);
   if (x2 > c) {digitalWrite(heatpin, HIGH);}
@@ -200,8 +218,26 @@ class ZeroHeat
   HeatOldTime = HeatTime; 
   digitalWrite(heatpin, LOW);
   Value = 0;}    
-  }
-  }
+  }  }
+
+  void HeatReverse(int x)
+  {
+  x2 = x*(c / 100);
+  if (x2 > c) {digitalWrite(heatpin, LOW);}
+  else if (x2 < 0) {digitalWrite(heatpin, HIGH);}
+  else {  
+  unsigned long HeatTime = millis();
+  
+  if(HeatTime - HeatOldTime >= (c-x2) && Value == 0) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, LOW);
+  Value = 1;}
+
+  if(HeatTime - HeatOldTime >= x2 && Value == 1) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, HIGH);
+  Value = 0;}    
+  }  }
 };
 
 /*
@@ -209,41 +245,22 @@ class ZeroHeat
  * This function converts the input Set and Scanned temperature values into a heat% to be used by ZeroHeat.
  */
 
-double ZeroRegulate(double Temp1Set, double Temp1Scan)
+double HeatRegulate(double TSet, double TScan)
 {
-#ifndef Temp1Peak
-byte Temp1Peak = 0;
-#endif
-int Temp1;
+int RegVal;
+  
+if      (TScan >= TSet + 1 )
+{RegVal = 0;  }
+else if (TScan <= TSet + 1 && TScan > TSet)
+{RegVal = 25; }
+else if (TScan <= TSet && TScan > TSet - 10)
+{RegVal = 50; }
+else if (TScan <= TSet - 10 && TScan > TSet - 30)
+{RegVal = 75; }
+else if (TScan <= TSet - 30)
+{RegVal = 100;}
 
-if (Temp1Peak == 0)
-{ 
-  if (Temp1Scan < (Temp1Set - 40))
-  {Temp1 = 100;}
-  else if (Temp1Scan < (Temp1Set - 25))
-  {Temp1 = 75;}
-  else if (Temp1Scan < (Temp1Set - 10))
-  {Temp1 = 50;}
-  else if (Temp1Scan <=(Temp1Set - 1))
-  {Temp1 = 25;}
-  else if (Temp1Scan > (Temp1Set - 1))
-  {Temp1Peak = 1;}
-}
-else if (Temp1Peak == 1)
-{
-  if (Temp1Scan > (Temp1Set + 1))
-  {Temp1 = 0;}
-  else if (Temp1Scan < (Temp1Set - 3))
-  {Temp1 = 100;}
-  else if (Temp1Scan < (Temp1Set - 2))
-  {Temp1 = 75;}
-  else if (Temp1Scan < (Temp1Set - 1))
-  {Temp1 = 50;}
-  else if (Temp1Scan > (Temp1Set - 1) && Temp1Scan < (Temp1Set + 1))
-  {Temp1 = 25;}
-}
-
-return Temp1;
+return RegVal;
 }
 
 #endif
