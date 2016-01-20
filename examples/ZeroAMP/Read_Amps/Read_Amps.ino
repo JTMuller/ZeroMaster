@@ -16,4 +16,7 @@ void loop() {
 // Write the readout as serial value
 double Value = amp.EXA();
 Serial.println(Value);
+
+// There ia anotherr way of reading amps which might work better for your system
+//double Value = amp.Amps();
 }
