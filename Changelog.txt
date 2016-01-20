@@ -1,10 +1,5 @@
-Version 10:
-Added a MAX6675 variation (Zero6675). Split the code into different class component files.
-Also removed HeatRegulate due to it not being used. 
-Redid the HeatRegulate example to work with Zero6675 and without HeatRegulate.
-
 Version 9:
-Reduced the lag in ZeroFila's readout code. Changed the ZeroLED working.
+Reduced the lag in ZeroFila's readout code. Changed the ZeroLED Pinouts
 
 Version 8:
 Removed the LED pin from ZeroFila, since it can probably be controlled better by ZeroPWM.
@@ -27,7 +22,7 @@ Heat and HeatSlow got replaced with Heat, HeatReverse, HeatFast and HeatFastReve
 
 Version 2:
 Complete overhaul of ZeroAMP.
-Added the HeatSlow function in ZeroHeat. Added HeatRegulate.
+Added the HeatSlow function in ZeroHeat.
 
 Version 1:
 Added ZeroHeat as a heater specific version of ZeroPWM.

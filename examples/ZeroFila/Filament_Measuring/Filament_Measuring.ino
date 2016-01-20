@@ -15,12 +15,8 @@ Serial.begin(9600);
 
 void loop()
 {
-// put the readout in a variable.
+// put the readout in a variabl.
 double X = Filament.FilaRead();
-
-// A heavier setup reading 5 times and taking an average.
-//double X = Filament.FilaRead5();
-
 Serial.println(X);
 }
 

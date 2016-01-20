@@ -16,5 +16,5 @@ void loop() {
 //Make sure to use PWM ports for the best results  
 led.Shine(100,0,0);
 //When not using PWM ports, use this line instead
-led.DigiShine(100,0,0);
+led.DigiShine(100,0,0)
 }
