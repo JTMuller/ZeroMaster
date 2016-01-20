@@ -25,13 +25,16 @@ class ZeroLED
  int Rpin; int Gpin; int Bpin;
  byte RValue; byte GValue; byte BValue;
  unsigned long ROldTime; unsigned long GOldTime; unsigned long BOldTime;
+ int R; int G; int B; 
  int R2; int G2; int B2;
  int LEDc;
   
  public:
- ZeroLED(int Rpin, int Gpin, int Bpin)
+ ZeroLED(int RpinI, int GpinI, int BpinI)
  {
- int R; int G; int B; 
+ Rpin = RpinI; 
+ Gpin = GpinI;
+ Bpin = BpinI;
  pinMode(Rpin, OUTPUT); analogWrite(Rpin, 0);
  pinMode(Gpin, OUTPUT); analogWrite(Gpin, 0);
  pinMode(Bpin, OUTPUT); analogWrite(Bpin, 0);
@@ -168,8 +171,8 @@ class ZeroPWM
   void pwmWrite(int x)
   {
   x2 = x*20;
-  if (x2 > c) {digitalWrite(pwmpin, HIGH);}
-  else if (x2 < 0) {digitalWrite(pwmpin, LOW);}
+  if (x >= 100) {digitalWrite(pwmpin, HIGH);}
+  else if (x <= 0) {digitalWrite(pwmpin, LOW);}
   else {  
   unsigned long PWMTime = micros();
   
@@ -316,7 +319,6 @@ return RegVal;
 
 class ZeroFila
 {
-int pinLED;
 int pinCLK;   
 int pinSI;   
 int pinAO1;
@@ -325,22 +327,20 @@ int LightMax;
 int LightMin;
 double Filamentwidth;
 double SensorStep;
-double FSA[20];
+double FSA[5];
 
 public:
-ZeroFila(int SI, int CLK, int AO1, int LED)
+ZeroFila(int SI, int CLK, int AO1)
   {
   pinSI  = SI;
   pinCLK =CLK;   
   pinAO1 =AO1;
-  pinLED =LED;
   LightMax = 0;
   LightMin = 1024;
   Filamentwidth = 0.0;
   SensorStep = 44.9; //  44.9 for TSL1401CL,      63.5 for TSL1402R
   pinMode(pinCLK, OUTPUT);   digitalWrite(pinCLK, LOW);
   pinMode(pinSI,  OUTPUT);   digitalWrite(pinSI, LOW);
-  pinMode(pinLED, OUTPUT);   digitalWrite(pinLED, HIGH);
   digitalWrite(pinSI, HIGH); digitalWrite(pinCLK, HIGH);  
   digitalWrite(pinCLK, LOW); digitalWrite(pinSI, LOW);
   }
@@ -379,22 +379,7 @@ ZeroFila(int SI, int CLK, int AO1, int LED)
   FSA[2] = FS();
   FSA[3] = FS();
   FSA[4] = FS();
-  FSA[5] = FS();
-  FSA[6] = FS();
-  FSA[7] = FS();
-  FSA[8] = FS();
-  FSA[9] = FS();
-  FSA[10] = FS();
-  FSA[11] = FS();
-  FSA[12] = FS();
-  FSA[13] = FS();
-  FSA[14] = FS();
-  FSA[15] = FS();
-  FSA[16] = FS();
-  FSA[17] = FS();
-  FSA[18] = FS();
-  FSA[19] = FS();
-  double FSR = (FSA[0]+FSA[1]+FSA[2]+FSA[3]+FSA[4]+FSA[5]+FSA[6]+FSA[7]+FSA[8]+FSA[9]+FSA[10]+FSA[11]+FSA[12]+FSA[13]+FSA[14]+FSA[15]+FSA[16]+FSA[17]+FSA[18]+FSA[19]) / 20;
+  double FSR = (FSA[0]+FSA[1]+FSA[2]+FSA[3]+FSA[4]) / 5;
   return FSR;
   }
 };

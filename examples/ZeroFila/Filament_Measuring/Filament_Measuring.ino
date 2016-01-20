@@ -5,8 +5,8 @@
 
 #include <ZeroMaster.h>
 
-// Define the SI, SCK, AO1, LED pins
-ZeroFila Filament(10,9,A0,2);
+// Define the SI, SCK, AO1 pins
+ZeroFila Filament(10,9,A0);
 
 void setup()
 {

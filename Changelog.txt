@@ -1,3 +1,9 @@
+Version 9:
+Reduced the lag in ZeroFila's readout code. Changed the ZeroLED Pinouts
+
+Version 8:
+Removed the LED pin from ZeroFila, since it can probably be controlled better by ZeroPWM.
+
 Version 7:
 Fixed ZeroFila so that it still functions when delayed, and measures a more stable value.
 
