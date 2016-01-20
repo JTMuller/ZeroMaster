@@ -91,3 +91,15 @@ void ZeroHeat::HeatReverse(int x)
   digitalWrite(heatpin, HIGH);
   Value = 0;}    
   }  }
+
+double ZeroHeat::HeatRegulate(double TSet, double TScan, double TOffBig, double TOffSmall, int TP1, int TP2, int TP3, int TP4)
+{
+  TOff2 = TSet - TOffSmall;
+  TOff1 = TSet - TOffBig;
+    
+  if ( TScan < TOff1 )                { TPercent = TP1; }
+  if ( TScan < TOff2 && TScan >=TOff1){ TPercent = TP2; }
+  if ( TScan >=TOff2 && TScan < TSet ){ TPercent = TP3; }
+  if ( TScan >=TSet )                 { TPercent = TP4; }
+  return TPercent;
+}

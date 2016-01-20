@@ -1,7 +1,7 @@
 /*
  * ZeroMaster.h - Library for using several devices for the 3Devo NEXT 1.0
  * Created by Julian Muller, November 30, 2015
- * Last updated on December 31, 2015
+ * Last updated on Januari 19, 2016
  */
 
 #ifndef ZEROMASTER_H
@@ -87,6 +87,9 @@ class ZeroHeat
   unsigned long HeatOldTime;
   int c;
   int x2;
+  double TPercent;
+  double TOff1;
+  double TOff2;
   
   public:
    ZeroHeat(int pin, int cycle);
@@ -94,6 +97,7 @@ class ZeroHeat
    void HeatFastReverse(int x);
    void Heat(int x);
    void HeatReverse(int x);
+   double HeatRegulate(double TSet, double TScan, double TOffBig, double TOffSmall, int TP1, int TP2, int TP3, int TP4);
 };
 
 
@@ -169,4 +173,5 @@ class ZeroBuzz
    void Pulse(int x);
 
 };
+
 #endif

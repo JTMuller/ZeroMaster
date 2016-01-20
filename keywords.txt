@@ -36,3 +36,4 @@ FilaRead5			KEYWORD2
 HeatRead			KEYWORD2
 HeatRead2			KEYWORD2
 Pulse				KEYWORD2
+HeatRegulate			KEYWORD2

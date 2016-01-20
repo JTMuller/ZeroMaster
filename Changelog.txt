@@ -1,3 +1,7 @@
+Version 13:
+Return of HeatRegulate! This time in a better working custom format.
+Updated ZeroHeat Regulate example to reflect this update.
+
 Version 12:
 Added a MAX31855 variation (Zero31855).
 
