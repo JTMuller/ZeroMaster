@@ -14,6 +14,6 @@ Serial.begin(9600);
 
 void loop() {
 // Write the readout as serial value
-double Value = amp.EXA()  
+double Value = amp.EXA();
 Serial.println(Value);
 }

@@ -36,10 +36,13 @@ class ZeroLED
  }
  
  void Shine(int R, int G, int B)
- {  
- analogWrite(Rpin, R);
- analogWrite(Gpin, G);
- analogWrite(Bpin, B);  
+ {
+ double Rc = R * 2.55;
+ double Gc = G * 2.55;
+ double Bc = B * 2.55; 
+ analogWrite(Rpin, Rc);
+ analogWrite(Gpin, Gc);
+ analogWrite(Bpin, Bc);  
  }
 };
 
@@ -166,8 +169,8 @@ class ZeroHeat
   void HeatFast(int x)
   {
   x2 = x*(c / 100);
-  if (x2 > c) {digitalWrite(heatpin, HIGH);}
-  else if (x2 < 0) {digitalWrite(heatpin, LOW);}
+  if (x >= 100) {digitalWrite(heatpin, HIGH);}
+  else if (x <= 0) {digitalWrite(heatpin, LOW);}
   else {  
   unsigned long HeatTime = micros();
   
@@ -185,8 +188,8 @@ class ZeroHeat
   void HeatFastReverse(int x)
   {
   x2 = x*(c / 100);
-  if (x2 > c) {digitalWrite(heatpin, LOW);}
-  else if (x2 < 0) {digitalWrite(heatpin, HIGH);}
+  if (x >= 100) {digitalWrite(heatpin, LOW);}
+  else if (x <= 0) {digitalWrite(heatpin, HIGH);}
   else {  
   unsigned long HeatTime = micros();
   
@@ -204,8 +207,8 @@ class ZeroHeat
   void Heat(int x)
   {
   x2 = x*(c / 100);
-  if (x2 > c) {digitalWrite(heatpin, HIGH);}
-  else if (x2 < 0) {digitalWrite(heatpin, LOW);}
+  if (x >= 100) {digitalWrite(heatpin, HIGH);}
+  else if (x <= 0) {digitalWrite(heatpin, LOW);}
   else {  
   unsigned long HeatTime = millis();
   
@@ -223,8 +226,8 @@ class ZeroHeat
   void HeatReverse(int x)
   {
   x2 = x*(c / 100);
-  if (x2 > c) {digitalWrite(heatpin, LOW);}
-  else if (x2 < 0) {digitalWrite(heatpin, HIGH);}
+  if (x >= 100) {digitalWrite(heatpin, LOW);}
+  else if (x <= 0) {digitalWrite(heatpin, HIGH);}
   else {  
   unsigned long HeatTime = millis();
   

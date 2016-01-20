@@ -12,7 +12,7 @@ void setup() {
 }
 
 void loop() {
-// Give the strip values of RGB. 0 is off, 1024 is maximum. 
+// Give the strip values of RGB. 0 is off, 100 is maximum.
 //Make sure to use PWM ports for the best results  
-led.Shine(1000,0,0); 
+led.Shine(100,0,0); 
 }
