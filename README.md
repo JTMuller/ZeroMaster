@@ -1,7 +1,7 @@
 ﻿# ZeroMaster
 
 ## Version 14
-For the latest version go to the GitHub.
+For the latest version go to the [GitHub](https://github.com/JTMuller/ZeroMaster).
 
 ## ZeroLED
 This function controls RGB LED strips.
