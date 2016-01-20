@@ -41,13 +41,13 @@ class ZeroLED
 
 class ZeroAMP
 {
-  int amppin;
-  double ARead;
-  double AMath;
-  double ACalc;
+  int 		amppin;
+  double 	ARead;
+  double 	AMath;
+  double 	ACalc;
   unsigned long ATime2;
-  double ARead2;
-  int count;
+  double 	ARead2;
+  int 		count;
 
   public:
    ZeroAMP(int pin);
@@ -63,11 +63,11 @@ class ZeroAMP
 
 class ZeroPWM
 {
-  int pwmpin;
-  byte Value;
+  int 		pwmpin;
+  byte 		Value;
   unsigned long PWMOldTime;
-  int c;
-  int x2;
+  int 		c;
+  int 		x2;
   
   public:
    ZeroPWM(int pin); 
@@ -82,22 +82,21 @@ class ZeroPWM
 
 class ZeroHeat
 {
-  int heatpin;
-  byte Value;
+  int 		heatpin;
+  bool 		Rev;
+  byte 		Value;
   unsigned long HeatOldTime;
-  int c;
-  int x2;
-  double TPercent;
-  double TOff1;
-  double TOff2;
+  int 		c;
+  int 		x2;
+  double 	TPercent;
+  double 	TOff1;
+  double 	TOff2;
   
   public:
-   ZeroHeat(int pin, int cycle);
+   ZeroHeat(int pin, int cycle, bool reverse);
    void HeatFast(int x);
-   void HeatFastReverse(int x);
    void Heat(int x);
-   void HeatReverse(int x);
-   double HeatRegulate(double TSet, double TScan, double TOffBig, double TOffSmall, int TP1, int TP2, int TP3, int TP4);
+   void HeatRegulate(double TSet, double TScan, double TOffBig, double TOffSmall, int TP1, int TP2, int TP3, int TP4);
 };
 
 
@@ -108,12 +107,12 @@ class ZeroHeat
 
 class ZeroFila
 {
-  int pinCLK;   
-  int pinSI;   
-  int pinAO1;
-  int IntArray[128];
-  int LightMax;
-  int LightMin;
+  int 	 pinCLK;   
+  int 	 pinSI;   
+  int 	 pinAO1;
+  int 	 IntArray[128];
+  int 	 LightMax;
+  int 	 LightMin;
   double Filamentwidth;
   double SensorStep;
   double FSA[5];
@@ -163,8 +162,8 @@ class Zero31855
 
 class ZeroBuzz
 {
-  int BuzzPin;
-  byte Value;
+  int 		BuzzPin;
+  byte 		Value;
   unsigned long BuzzTime;
   unsigned long BuzzOldTime;
 

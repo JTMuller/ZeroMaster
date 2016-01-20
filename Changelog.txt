@@ -1,3 +1,7 @@
+Version 14:
+Great update to ZeroHeat. Reverse is now a part of the class.
+HeatRegulate no longer gives a value, but instead directly controls the heater.
+
 Version 13:
 Return of HeatRegulate! This time in a better working custom format.
 Updated ZeroHeat Regulate example to reflect this update.
