@@ -18,6 +18,7 @@ ZeroHeat			KEYWORD1
 #######################################
 
 Shine   			KEYWORD2
+DigiShine   			KEYWORD2
 EXA	   			KEYWORD2
 pwmWrite   			KEYWORD2
 Heat				KEYWORD2

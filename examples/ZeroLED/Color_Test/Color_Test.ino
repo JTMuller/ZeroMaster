@@ -13,7 +13,8 @@ void setup() {
 
 void loop() {
 // Give the strip values of RGB. 0 is off, 100 is maximum.
-//Make sure to use PWM ports for the best results  
+//Make sure to use PWM ports for the best results.
+//Replace Shine with DigiShine when not using PWM ports.
 led.Shine(100,0,0); // Red
 delay(1000);
 led.Shine(0,100,0); // Green
