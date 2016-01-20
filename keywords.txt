@@ -13,6 +13,9 @@ ZeroAMP      			KEYWORD1
 ZeroPWM      			KEYWORD1
 ZeroHeat			KEYWORD1
 ZeroFila			KEYWORD1
+Zero6675			KEYWORD1
+Zero31855			KEYWORD1
+ZeroBuzz			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -21,11 +24,15 @@ ZeroFila			KEYWORD1
 Shine   			KEYWORD2
 DigiShine   			KEYWORD2
 EXA	   			KEYWORD2
+Amps				KEYWORD2
 pwmWrite   			KEYWORD2
 Heat				KEYWORD2
 HeatReverse			KEYWORD2
 HeatFast			KEYWORD2
 HeatFastReverse			KEYWORD2
-HeatRegulate			KEYWORD2
 HeatReverse			KEYWORD2
 FilaRead			KEYWORD2
+FilaRead5			KEYWORD2
+HeatRead			KEYWORD2
+HeatRead2			KEYWORD2
+Pulse				KEYWORD2
