@@ -136,21 +136,4 @@ class Zero6675
    uint8_t SPIRead(void);
 };
 
-/*
- * ZeroBuzz is used for Piezo Buzzers on a PWM pin.
- * This class and function create an error signal to hear when something is wrong. 
- */
-
-class ZeroBuzz
-{
-  int BuzzPin;
-  byte Value;
-  unsigned long BuzzTime;
-  unsigned long BuzzOldTime;
-
-  public:
-   ZeroBuzz(int pin);
-   void Pulse(int x);
-
-};
 #endif

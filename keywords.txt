@@ -14,7 +14,6 @@ ZeroPWM      			KEYWORD1
 ZeroHeat			KEYWORD1
 ZeroFila			KEYWORD1
 Zero6675			KEYWORD1
-ZeroBuzz			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -33,4 +32,3 @@ HeatReverse			KEYWORD2
 FilaRead			KEYWORD2
 FilaRead5			KEYWORD2
 HeatRead			KEYWORD2
-Pulse				KEYWORD2

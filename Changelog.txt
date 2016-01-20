@@ -1,7 +1,3 @@
-Version 11:
-Added ZeroBuzz, a simple error sound generator on a frequency of choice.
-Also added new examples for ZeroBuzz and ZeroLED
-
 Version 10:
 Added a MAX6675 variation (Zero6675). Split the code into different class component files.
 Also removed HeatRegulate due to it not being used. 
