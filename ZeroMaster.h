@@ -42,95 +42,56 @@ class ZeroLED
 class ZeroAMP
 {
   int amppin;
-  double EXAT_A1;
-  double EXAT_A2;
-  double EXAT_A3;
-  double EXAT_A4;
-  double EXAT_A5;
-  double EXAT_A6;
-  double EXAT_A7;
-  double EXAT_A8;
-  double EXAT_A9;
-  double EXAT_A10;
-  double EXAT_A11;
-  double EXAT_A12;
-  double EXAT_A13;
-  double EXAT_A14;
-  double EXAT_A15;
-  double EXAT_A16;
-  double EXAT_A17;
-  double EXAT_A18;
-  double EXAT_A19;
-  double EXAT_A20;
-  double EXAT_ARead;
-  double EXAT_ACalc;
-  unsigned long EXAT_OldTime;
+  double ARead;
+  double AMath;
+  double ACalc;
+  unsigned long ATime2;
+  double ARead2;
+  int count;
 
   public:
   ZeroAMP(int pin)
   {
   amppin = pin;
   pinMode(amppin, INPUT);     
-  EXAT_OldTime = 0;
+  ARead  = 0;
+  AMath  = 0;
+  ACalc  = 0;
+  ATime2 = 0;
+  ARead2 = 0;
+  count  = 0;
   }
  
   double EXA()
   {
-  unsigned long EXAT_Timer = millis() - EXAT_OldTime;
-  if (EXAT_Timer > 25 && EXAT_Timer < 50) {
-  EXAT_A1 = analogRead(amppin); }
-  if (EXAT_Timer > 50 && EXAT_Timer < 75) {
-  EXAT_A2 = analogRead(amppin); }
-  if (EXAT_Timer > 75 && EXAT_Timer <100) {
-  EXAT_A3 = analogRead(amppin); }  
-  if (EXAT_Timer >100 && EXAT_Timer <125) {
-  EXAT_A4 = analogRead(amppin); }
-  if (EXAT_Timer >125 && EXAT_Timer <150) {
-  EXAT_A5 = analogRead(amppin); }
-  if (EXAT_Timer >150 && EXAT_Timer <175) {
-  EXAT_A6 = analogRead(amppin); }
-  if (EXAT_Timer >175 && EXAT_Timer <200) {
-  EXAT_A7 = analogRead(amppin); }  
-  if (EXAT_Timer >200 && EXAT_Timer <225) {
-  EXAT_A8 = analogRead(amppin); }
-  if (EXAT_Timer >225 && EXAT_Timer <250) {
-  EXAT_A9 = analogRead(amppin); }
-  if (EXAT_Timer >250 && EXAT_Timer <275) {
-  EXAT_A10 = analogRead(amppin); }
-  if (EXAT_Timer >275 && EXAT_Timer <300) {
-  EXAT_A11 = analogRead(amppin); }  
-  if (EXAT_Timer >300 && EXAT_Timer <325) {
-  EXAT_A12 = analogRead(amppin); }
-  if (EXAT_Timer >325 && EXAT_Timer <350) {
-  EXAT_A13 = analogRead(amppin); }
-  if (EXAT_Timer >350 && EXAT_Timer <375) {
-  EXAT_A14 = analogRead(amppin); }
-  if (EXAT_Timer >375 && EXAT_Timer <400) {
-  EXAT_A15 = analogRead(amppin); }  
-  if (EXAT_Timer >400 && EXAT_Timer <425) {
-  EXAT_A16 = analogRead(amppin); }
-  if (EXAT_Timer >425 && EXAT_Timer <450) {
-  EXAT_A17 = analogRead(amppin); }
-  if (EXAT_Timer >450 && EXAT_Timer <475) {
-  EXAT_A18 = analogRead(amppin); }
-  if (EXAT_Timer >475 && EXAT_Timer <500) {
-  EXAT_A19 = analogRead(amppin); }  
-  if (EXAT_Timer >500) {
-  EXAT_A20 = analogRead(amppin); 
-  
-  EXAT_ARead =( EXAT_A1+EXAT_A2+EXAT_A3+EXAT_A4+EXAT_A5+EXAT_A6+EXAT_A7+EXAT_A8+EXAT_A9+EXAT_A10+EXAT_A11+EXAT_A12+EXAT_A13+EXAT_A14+EXAT_A15+EXAT_A16+EXAT_A17+EXAT_A18+EXAT_A19+EXAT_A20 ) / 20;
-  EXAT_ACalc = (( ((EXAT_ARead /  1023) * 5) ) - 2.5) /0.066 ;
-  EXAT_OldTime = EXAT_Timer;
-  return EXAT_ACalc;
+  unsigned long ATime = millis() - ATime2;
+  if (ATime > 500)
+   {
+   ARead = analogRead(amppin);
+   ARead2 = ARead2  + ARead;
+   count = count + 1;
+   ATime2 = ATime;
+   }
+
+  if (count >= 1000)
+   {
+   ARead = ARead2 / count;
+   AMath = (ARead / 1023.0) * 5000;
+   ACalc = ((AMath - 2500) / 66) / 1.85;
+   count = 0;
+   ARead2 = 0;
+   }
+  return ACalc;
   } 
-  }
 };
 
 class ZeroPWM
 {
   int pwmpin;
-  int Value;
+  byte Value;
   unsigned long PWMOldTime;
+  int c;
+  int x2;
   
   public:
   ZeroPWM(int pin)
@@ -138,74 +99,87 @@ class ZeroPWM
   pwmpin = pin;
   pinMode(pwmpin, OUTPUT);
   PWMOldTime = 0;
+  Value = 0;
+  c = 2000;
   }
  
   void pwmWrite(int x)
   {
-  unsigned long PWMTime = millis() - PWMOldTime;
-  if (x > 0 && x < 255) {
-   if (PWMTime == x && Value == 0)
-   {
-   digitalWrite(pwmpin, HIGH); Value = 1;
-   }
-   if (PWMTime == (255-x) && Value == 1)
-   {
-   digitalWrite(pwmpin, LOW);
-   PWMOldTime = PWMTime; Value = 0;
-   }
+  x2 = x*20;
+  if (x2 > c) {digitalWrite(pwmpin, HIGH);}
+  else if (x2 < 0) {digitalWrite(pwmpin, LOW);}
+  else {  
+  unsigned long PWMTime = micros();
+  
+  if(PWMTime - PWMOldTime >= (c-x2) && Value == 0) {
+  PWMOldTime = PWMTime; 
+  digitalWrite(pwmpin, HIGH);
+  Value = 1;}
+
+  if(PWMTime - PWMOldTime >= x2 && Value == 1) {
+  PWMOldTime = PWMTime; 
+  digitalWrite(pwmpin, LOW);
+  Value = 0;}    
   }
-  else {
-   if (x >= 255)
-   {x = 255;
-   digitalWrite(pwmpin, HIGH);}
-   if (x <= 0)
-   {x=0;
-   digitalWrite(pwmpin, LOW);}
-   }    
   }
 };
 
 class ZeroHeat
 {
   int heatpin;
-  int Value;
-  int cycle;
-  unsigned long HeaterOldTime;
+  byte Value;
+  unsigned long HeatOldTime;
+  int c;
+  int x2;
   
   public:
-  ZeroHeat(int hpin, int c)
+  ZeroHeat(int pin, int cycle)
   {
-  heatpin = hpin;
-  cycle = c;
+  heatpin = pin;
   pinMode(heatpin, OUTPUT);
-  HeaterOldTime = 0;
+  HeatOldTime = 0;
+  Value = 0;
+  c = cycle;
   }
-  
-  void Heat(int y)
+ 
+  void Heat(int x)
   {
-  int z = (y / 100) * cycle; // % to millis
-  unsigned long HeaterTime = millis() - HeaterOldTime;
-  if (z > 0 && z < cycle) {
-   if (HeaterTime >= z && Value == 0)
-   {
-   digitalWrite(heatpin, LOW); 
-   HeaterOldTime = HeaterTime; Value = 1;
-   }
-   if (HeaterTime >= (cycle-z) && Value == 1)
-   {
-   digitalWrite(heatpin, HIGH);
-   HeaterOldTime = HeaterTime; Value = 0;
-   }
+  x2 = x*(c / 100);
+  if (x2 > c) {digitalWrite(heatpin, HIGH);}
+  else if (x2 < 0) {digitalWrite(heatpin, LOW);}
+  else {  
+  unsigned long HeatTime = micros();
+  
+  if(HeatTime - HeatOldTime >= (c-x2) && Value == 0) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, HIGH);
+  Value = 1;}
+
+  if(HeatTime - HeatOldTime >= x2 && Value == 1) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, LOW);
+  Value = 0;}    
   }
-  else {
-   if (z >= cycle)
-   {z = cycle;
-   digitalWrite(heatpin, LOW);}
-   if (z <= 0)
-   {z = 0;
-   digitalWrite(heatpin, HIGH);}
-   HeaterOldTime = HeaterTime;
-   }    
+  }
+
+  void HeatSlow(int x)
+  {
+  x2 = x*(c / 100);
+  if (x2 > c) {digitalWrite(heatpin, HIGH);}
+  else if (x2 < 0) {digitalWrite(heatpin, LOW);}
+  else {  
+  unsigned long HeatTime = millis();
+  
+  if(HeatTime - HeatOldTime >= (c-x2) && Value == 0) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, HIGH);
+  Value = 1;}
+
+  if(HeatTime - HeatOldTime >= x2 && Value == 1) {
+  HeatOldTime = HeatTime; 
+  digitalWrite(heatpin, LOW);
+  Value = 0;}    
+  }
   }
 };
 

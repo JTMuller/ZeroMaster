@@ -12,6 +12,6 @@ void setup() {
 }
 
 void loop() {
-// Set a pwm value between 0 and 255 as 0 and 100%
-coolingfan.pwmWrite(200);
+// Set a pwm value between 0 and 100%
+coolingfan.pwmWrite(80);
 }

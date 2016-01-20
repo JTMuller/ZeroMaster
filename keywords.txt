@@ -21,3 +21,4 @@ Shine   			KEYWORD2
 EXA	   			KEYWORD2
 pwmWrite   			KEYWORD2
 Heat				KEYWORD2
+HeatSlow			KEYWORD2
