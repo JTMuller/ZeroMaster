@@ -7,10 +7,10 @@
 #include <stdlib.h>
 #include "ZeroMaster.h"
 
-Zero6675::Zero6675(int8_t SCLK, int8_t CS, int8_t MISO) {
-  sclk = SCLK;
-  cs = CS;
-  miso = MISO;
+Zero6675::Zero6675(int8_t PSCLK, int8_t PCS, int8_t PMISO) {
+  sclk = PSCLK;
+  cs = PCS;
+  miso = PMISO;
 
   pinMode(cs, OUTPUT);
   pinMode(sclk, OUTPUT); 

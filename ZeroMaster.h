@@ -118,7 +118,7 @@ class ZeroFila
   double FSA[5];
 
   public:
-   ZeroFila(int SI, int CLK, int AO1);
+   ZeroFila(int PSI, int PCLK, int PAO1);
    double FilaRead();
    double FilaRead5();
 };
@@ -132,7 +132,7 @@ class ZeroFila
 class Zero6675 
 {
   public:
-   Zero6675(int8_t SCLK, int8_t CS, int8_t MISO);
+   Zero6675(int8_t PSCLK, int8_t PCS, int8_t PMISO);
    double HeatRead();
   private:
    int8_t sclk, miso, cs;
@@ -147,7 +147,7 @@ class Zero6675
 class Zero31855 
 {
   public:
-   Zero31855(int8_t SCLK, int8_t CS, int8_t MISO);
+   Zero31855(int8_t PSCLK, int8_t PCS, int8_t PMISO);
   double HeatRead2();
   private:
    int8_t sclk, miso, cs;

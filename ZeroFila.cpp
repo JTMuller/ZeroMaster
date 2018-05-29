@@ -7,11 +7,11 @@
 #include <stdlib.h>
 #include "ZeroMaster.h"
 
-ZeroFila::ZeroFila(int SI, int CLK, int AO1)
+ZeroFila::ZeroFila(int PSI, int PCLK, int PAO1)
   {
-  pinSI  = SI;
-  pinCLK =CLK;   
-  pinAO1 =AO1;
+  pinSI  = PSI;
+  pinCLK =PCLK;   
+  pinAO1 =PAO1;
   LightMax = 0;
   LightMin = 1024;
   Filamentwidth = 0.0;
