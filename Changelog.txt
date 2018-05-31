@@ -1,3 +1,6 @@
+Version 15:
+Added the ZeroColor functionality. Made the library compatible for Xmega boards.
+
 Version 14:
 Great update to ZeroHeat. Reverse is now a part of the class.
 HeatRegulate no longer gives a value, but instead directly controls the heater.

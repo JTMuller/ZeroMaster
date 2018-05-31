@@ -1,4 +1,4 @@
-﻿# ZeroMaster
+# ZeroMaster
 
 ## Version 14
 For the latest version go to the [GitHub](https://github.com/JTMuller/ZeroMaster).
@@ -50,6 +50,12 @@ This function controls a piezo buzzer to make an error sound.
 ZeroBuzz holds a single function: Pulse.
 The Pulse function makes an annoying sound pulse which can be used for system errors in machines.
 The frequency of the function is completely adjustable.
+
+## ZeroColor
+This function controls a TCS230 or TCS3200 color sensor to give easy readouts of colors.
+ZeroBuzz holds the Set, ChangeSetting, Read and ReadAll functions.
+The Set function is used to set the color you want to read out. This readout can be done with the Read function.
+ChangeSetting can set the sensor on a different output level. This output level has also been defined in the ZeroColor class itself for the setup. The RealAll function can read all the colors at once.
 
 ## Usage
 The ZeroMaster library is free for usage.

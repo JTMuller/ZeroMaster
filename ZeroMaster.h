@@ -173,4 +173,24 @@ class ZeroBuzz
 
 };
 
+/*
+* ZeroColor is the class made for the TCS230 and TCS3200 RBG Color Sensors.
+* This class and function simply compiles all 3 colors in one element for an easier code.
+*/
+
+class ZeroColor
+{
+	int S0pin; int S1pin; int S2pin; int S3pin; int SOpin;
+	int ColorFreq;
+	unsigned long COldTime;
+	int TimeDelay;
+
+public:
+	ZeroColor(int pinS0, int pinS1, int pinS2, int pinS3, int pinSO, int setting);
+	void ChangeSetting(int setting);
+	void Set(char C);
+	int Read();
+	void ReadAll(int RFreq, int GFreq, int BFreq, int CFreq);
+};
+
 #endif

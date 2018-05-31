@@ -16,6 +16,7 @@ ZeroFila			KEYWORD1
 Zero6675			KEYWORD1
 Zero31855			KEYWORD1
 ZeroBuzz			KEYWORD1
+ZeroColor			KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)
@@ -34,3 +35,7 @@ FilaRead5			KEYWORD2
 HeatRead			KEYWORD2
 HeatRead2			KEYWORD2
 Pulse				KEYWORD2
+Set				KEYWORD2
+ChangeSetting		KEYWORD2
+Read				KEYWORD2
+ReadAll			KEYWORD2
